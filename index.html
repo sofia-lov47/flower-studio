@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Студия цветов «Лаванда» — авторские букеты с доставкой по Москве</title>
+  <meta name="description" content="Студия цветов «Лаванда»: авторские букеты, оформление свадеб и мероприятий, доставка цветов по Москве за 2 часа.">
+  <style>
+    :root {
+      --lavender: #9b87c9;
+      --lavender-dark: #6f5aa8;
+      --lavender-light: #ece6f7;
+      --rose: #e7b7c0;
+      --rose-dark: #c98593;
+      --cream: #fdf8f3;
+      --leaf: #8fae8b;
+      --text: #3d3550;
+      --text-soft: #6e6780;
+      --white: #ffffff;
+      --radius: 22px;
+      --shadow: 0 12px 32px rgba(111, 90, 168, 0.12);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-serif: Georgia, "Times New Roman", serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(1180px, 92%); margin: 0 auto; }
+
+    section { padding: 96px 0; scroll-margin-top: 70px; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lavender-dark);
+      background: var(--lavender-light);
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-sub { color: var(--text-soft); max-width: 620px; margin-bottom: 48px; }
+
+    .center { text-align: center; }
+    .center .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* ---------- Кнопки ---------- */
+    .btn {
+      display: inline-block;
+      padding: 15px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s, color 0.25s;
+      font-family: inherit;
+    }
+    .btn-primary { background: var(--lavender-dark); color: var(--white); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(111, 90, 168, 0.35); }
+    .btn-outline { border-color: var(--lavender-dark); color: var(--lavender-dark); background: transparent; }
+    .btn-outline:hover { background: var(--lavender-dark); color: var(--white); }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 248, 243, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(155, 135, 201, 0.15);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-serif); font-size: 1.6rem; color: var(--lavender-dark); }
+    .logo-icon { font-size: 1.6rem; }
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links a { font-size: 0.95rem; position: relative; padding: 4px 0; }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px;
+      background: var(--rose-dark); transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-phone { font-weight: 600; color: var(--lavender-dark); }
+    .burger { display: none; background: none; border: none; cursor: pointer; width: 32px; height: 24px; position: relative; }
+    .burger span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--text); transition: 0.3s; }
+    .burger span:nth-child(1) { top: 0; }
+    .burger span:nth-child(2) { top: 11px; }
+    .burger span:nth-child(3) { top: 22px; }
+    .burger.open span:nth-child(1) { transform: rotate(45deg); top: 11px; }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: rotate(-45deg); top: 11px; }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 80px 0 110px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(231, 183, 192, 0.45), transparent 70%);
+      top: -160px; right: -120px;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; position: relative; }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.2vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
+    .hero h1 em { color: var(--lavender-dark); font-style: italic; }
+    .hero p { font-size: 1.15rem; color: var(--text-soft); max-width: 480px; margin-bottom: 36px; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 40px; margin-top: 48px; }
+    .hero-stats strong { display: block; font-family: var(--font-serif); font-size: 2rem; color: var(--lavender-dark); font-weight: 400; white-space: nowrap; }
+    .hero-stats span { font-size: 0.88rem; color: var(--text-soft); }
+
+    .hero-visual {
+      aspect-ratio: 4 / 5;
+      border-radius: 200px 200px var(--radius) var(--radius);
+      background: linear-gradient(160deg, var(--lavender-light) 0%, #f6dfe4 55%, #e9f0e4 100%);
+      box-shadow: var(--shadow);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-visual svg { width: 78%; height: auto; }
+    .hero-badge {
+      position: absolute; bottom: 36px; left: -28px;
+      background: var(--white); padding: 14px 20px; border-radius: 16px; box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: 12px; font-size: 0.9rem;
+    }
+    .hero-badge b { display: block; color: var(--lavender-dark); }
+
+    /* ---------- О студии ---------- */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .about-text p { color: var(--text-soft); margin-bottom: 16px; }
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .feature {
+      background: var(--white); padding: 28px 24px; border-radius: var(--radius);
+      box-shadow: 0 4px 16px rgba(111, 90, 168, 0.06); transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .feature-icon {
+      width: 54px; height: 54px; border-radius: 16px; background: var(--lavender-light);
+      display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 16px;
+    }
+    .feature h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .feature p { font-size: 0.92rem; color: var(--text-soft); }
+
+    /* ---------- Букеты ---------- */
+    .bouquets { background: var(--white); }
+    .bouquet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .bouquet-card {
+      background: var(--cream); border-radius: var(--radius); overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .bouquet-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+    .bouquet-img {
+      aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; font-size: 5.5rem;
+      transition: transform 0.4s;
+    }
+    .bouquet-card:hover .bouquet-img { transform: scale(1.06); }
+    .bg-1 { background: linear-gradient(135deg, #f3d9e0, #e7b7c0); }
+    .bg-2 { background: linear-gradient(135deg, #ece6f7, #c9bce6); }
+    .bg-3 { background: linear-gradient(135deg, #fbefd9, #f2cfa5); }
+    .bg-4 { background: linear-gradient(135deg, #e3eedf, #b9d3b3); }
+    .bg-5 { background: linear-gradient(135deg, #fde6e0, #f4b6a7); }
+    .bg-6 { background: linear-gradient(135deg, #f2eefb, #dcd2f0); }
+    .bouquet-body { padding: 24px; }
+    .bouquet-body h3 { font-family: var(--font-serif); font-weight: 400; font-size: 1.4rem; margin-bottom: 6px; }
+    .bouquet-body p { font-size: 0.92rem; color: var(--text-soft); margin-bottom: 18px; min-height: 48px; }
+    .bouquet-footer { display: flex; align-items: center; justify-content: space-between; }
+    .price { font-size: 1.3rem; font-weight: 700; color: var(--lavender-dark); }
+    .btn-small { padding: 10px 22px; font-size: 0.9rem; }
+
+    /* ---------- Услуги ---------- */
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .service {
+      padding: 34px 26px; border-radius: var(--radius); background: var(--white);
+      border: 1px solid rgba(155, 135, 201, 0.18); transition: 0.3s; position: relative; overflow: hidden;
+    }
+    .service::before {
+      content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, var(--lavender-dark), var(--lavender));
+      opacity: 0; transition: opacity 0.35s; z-index: 0;
+    }
+    .service > * { position: relative; z-index: 1; }
+    .service:hover::before { opacity: 1; }
+    .service:hover { color: var(--white); transform: translateY(-6px); }
+    .service:hover p { color: rgba(255, 255, 255, 0.85); }
+    .service-icon { font-size: 2.2rem; margin-bottom: 18px; }
+    .service h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .service p { font-size: 0.92rem; color: var(--text-soft); transition: color 0.3s; }
+
+    /* ---------- Доставка ---------- */
+    .delivery { background: linear-gradient(180deg, var(--lavender-light), var(--cream)); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 56px; }
+    .step { background: var(--white); border-radius: var(--radius); padding: 34px 28px; box-shadow: 0 4px 16px rgba(111, 90, 168, 0.06); }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%; background: var(--rose); color: var(--white);
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; margin-bottom: 18px;
+    }
+    .step h3 { margin-bottom: 8px; }
+    .step p { color: var(--text-soft); font-size: 0.95rem; }
+    .payment { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+    .payment span {
+      background: var(--white); padding: 12px 22px; border-radius: 50px; font-size: 0.95rem;
+      border: 1px solid rgba(155, 135, 201, 0.25);
+    }
+
+    /* ---------- Отзывы ---------- */
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .review { background: var(--white); border-radius: var(--radius); padding: 32px; box-shadow: 0 4px 16px rgba(111, 90, 168, 0.06); }
+    .stars { color: #e9a93b; letter-spacing: 3px; margin-bottom: 14px; }
+    .review p { font-style: italic; color: var(--text-soft); margin-bottom: 22px; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      background: var(--lavender-light); color: var(--lavender-dark); font-weight: 700;
+    }
+    .review-author small { display: block; color: var(--text-soft); }
+
+    /* ---------- Контакты ---------- */
+    .contacts { background: var(--white); }
+    .contacts-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 50px; }
+    .contact-list { list-style: none; margin-bottom: 28px; }
+    .contact-list li { display: flex; gap: 16px; margin-bottom: 22px; }
+    .contact-list .ci { font-size: 1.4rem; }
+    .contact-list b { display: block; }
+    .contact-list span { color: var(--text-soft); }
+    .messengers { display: flex; gap: 12px; flex-wrap: wrap; }
+    .messengers a {
+      padding: 10px 20px; border-radius: 50px; background: var(--lavender-light); color: var(--lavender-dark); font-weight: 600;
+      transition: 0.25s;
+    }
+    .messengers a:hover { background: var(--lavender-dark); color: var(--white); }
+    .form-card { background: var(--cream); border-radius: var(--radius); padding: 40px; }
+    .form-card h3 { font-family: var(--font-serif); font-weight: 400; font-size: 1.7rem; margin-bottom: 8px; }
+    .form-card > p { color: var(--text-soft); margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.88rem; margin-bottom: 6px; color: var(--text-soft); }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 14px 18px; border-radius: 14px; border: 1px solid rgba(155, 135, 201, 0.35);
+      font-family: inherit; font-size: 1rem; background: var(--white); color: var(--text); transition: border 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--lavender); box-shadow: 0 0 0 4px rgba(155, 135, 201, 0.2);
+    }
+    .form-card .btn { width: 100%; }
+    .form-success {
+      display: none; margin-top: 16px; padding: 14px; border-radius: 14px; text-align: center;
+      background: #e3eedf; color: #4c6e48; font-weight: 600;
+    }
+    .form-success.show { display: block; }
+
+    /* ---------- Footer ---------- */
+    footer { background: var(--text); color: rgba(255, 255, 255, 0.75); padding: 48px 0 32px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    footer .logo { color: var(--white); }
+    .socials { display: flex; gap: 12px; }
+    .socials a {
+      width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex; align-items: center; justify-content: center; transition: 0.25s; font-size: 0.85rem; font-weight: 700;
+    }
+    .socials a:hover { background: var(--lavender); border-color: var(--lavender); color: var(--white); }
+    .copyright { width: 100%; text-align: center; font-size: 0.85rem; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+    /* ---------- Анимация появления ---------- */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ---------- Адаптивность ---------- */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .bouquet-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { gap: 20px; }
+      .nav-phone { display: none; }
+    }
+
+    @media (max-width: 860px) {
+      section { padding: 72px 0; }
+      .burger { display: block; }
+      .nav-links {
+        position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0;
+        background: var(--cream); padding: 10px 4%; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        max-height: 0; overflow: hidden; padding-top: 0; padding-bottom: 0; transition: max-height 0.35s, padding 0.35s;
+      }
+      .nav-links.open { max-height: 420px; padding-top: 10px; padding-bottom: 16px; }
+      .nav-links li { border-bottom: 1px solid rgba(155, 135, 201, 0.15); }
+      .nav-links a { display: block; padding: 14px 0; }
+      .hero-grid, .about-grid, .contacts-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 48px; }
+      .hero-visual { max-width: 420px; margin: 0 auto; }
+      .steps, .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .bouquet-grid, .services-grid, .features { grid-template-columns: 1fr; }
+      .hero-stats { gap: 20px; flex-wrap: wrap; }
+      .hero-stats strong { font-size: 1.6rem; }
+      .hero-badge { left: 12px; bottom: 16px; }
+      .form-card { padding: 28px 20px; }
+      .hero-buttons .btn { width: 100%; text-align: center; }
+    }
+      .demo-note { font-size: .82rem; color: var(--text-soft); margin-top: 16px; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--lavender-dark); outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+      .bouquet-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="container nav">
+      <a href="#top" class="logo"><span class="logo-icon">🪻</span>Лаванда</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">О студии</a></li>
+        <li><a href="#bouquets">Букеты</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#delivery">Доставка</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+      <a href="tel:+74951234567" class="nav-phone">+7 (495) 123-45-67</a>
+      <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="section-label">Студия цветов в Москве</span>
+          <h1>Цветы, которые <em>говорят</em> за вас</h1>
+          <p>Собираем авторские букеты из свежих цветов, оформляем свадьбы и праздники и доставляем по Москве за 2 часа.</p>
+          <div class="hero-buttons">
+            <a href="#bouquets" class="btn btn-primary">Выбрать букет</a>
+            <a href="#contacts" class="btn btn-outline">Заказать консультацию</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>7 лет</strong><span>создаём букеты</span></div>
+            <div><strong>12 000+</strong><span>счастливых клиентов</span></div>
+            <div><strong>2 часа</strong><span>доставка по городу</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg" aria-label="Иллюстрация букета">
+            <path d="M150 340 L150 190" stroke="#8fae8b" stroke-width="6" stroke-linecap="round"/>
+            <path d="M150 300 C 110 270, 80 250, 70 210" stroke="#8fae8b" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M150 300 C 190 270, 220 250, 230 210" stroke="#8fae8b" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="105" cy="260" rx="26" ry="10" fill="#a9c4a5" transform="rotate(-35 105 260)"/>
+            <ellipse cx="195" cy="260" rx="26" ry="10" fill="#a9c4a5" transform="rotate(35 195 260)"/>
+            <g fill="#e7b7c0">
+              <circle cx="150" cy="150" r="34"/><circle cx="120" cy="170" r="28"/><circle cx="180" cy="170" r="28"/>
+              <circle cx="135" cy="125" r="26"/><circle cx="165" cy="125" r="26"/>
+            </g>
+            <circle cx="150" cy="150" r="16" fill="#c98593"/>
+            <g fill="#9b87c9">
+              <ellipse cx="70" cy="190" rx="9" ry="16"/><ellipse cx="70" cy="165" rx="8" ry="14"/><ellipse cx="70" cy="143" rx="7" ry="12"/><ellipse cx="70" cy="124" rx="5" ry="10"/>
+              <ellipse cx="230" cy="190" rx="9" ry="16"/><ellipse cx="230" cy="165" rx="8" ry="14"/><ellipse cx="230" cy="143" rx="7" ry="12"/><ellipse cx="230" cy="124" rx="5" ry="10"/>
+            </g>
+            <g fill="#fff6ee">
+              <circle cx="100" cy="110" r="14"/><circle cx="200" cy="110" r="14"/><circle cx="150" cy="88" r="14"/>
+            </g>
+            <g fill="#f2cfa5"><circle cx="100" cy="110" r="5"/><circle cx="200" cy="110" r="5"/><circle cx="150" cy="88" r="5"/></g>
+            <path d="M115 300 L185 300 L170 345 L130 345 Z" fill="#c9bce6"/>
+            <path d="M115 300 L185 300" stroke="#6f5aa8" stroke-width="3"/>
+          </svg>
+          <div class="hero-badge">🌷<div><b>Фото букета</b>перед отправкой</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== О студии ===== -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-text reveal">
+          <span class="section-label">О студии</span>
+          <h2 class="section-title">Маленькая студия с большой любовью к цветам</h2>
+          <p>«Лаванда» появилась в 2019 году из небольшой мастерской на Покровке. Мы начинали с букетов для друзей, а сегодня каждый день собираем десятки композиций для тех, кто хочет порадовать близких.</p>
+          <p>Мы работаем только со свежими цветами от проверенных поставщиков, сами подбираем сочетания оттенков и упаковываем каждый букет так, будто дарим его сами.</p>
+          <a href="#bouquets" class="btn btn-outline" style="margin-top: 12px;">Смотреть букеты</a>
+        </div>
+        <div class="features reveal">
+          <div class="feature"><div class="feature-icon">🌿</div><h3>Свежие цветы</h3><p>Поставки 3 раза в неделю, никаких «вчерашних» роз.</p></div>
+          <div class="feature"><div class="feature-icon">🚚</div><h3>Доставка за 2 часа</h3><p>Привезём букет в любую точку Москвы в пределах МКАД.</p></div>
+          <div class="feature"><div class="feature-icon">🎨</div><h3>Авторский дизайн</h3><p>Каждый букет собирает флорист под ваш повод и бюджет.</p></div>
+          <div class="feature"><div class="feature-icon">📸</div><h3>Фото перед отправкой</h3><p>Пришлём фото готового букета в мессенджер.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Букеты ===== -->
+    <section id="bouquets" class="bouquets">
+      <div class="container">
+        <div class="center reveal">
+          <span class="section-label">Каталог</span>
+          <h2 class="section-title">Популярные букеты</h2>
+          <p class="section-sub">Самые любимые композиции наших клиентов. Любой букет можно собрать в другой гамме или размере.</p>
+        </div>
+        <div class="bouquet-grid">
+          <article class="bouquet-card reveal">
+            <div class="bouquet-img bg-1"><img src="images/nezhnost.jpg" alt="Букет нежно-розовых и кремовых роз с эвкалиптом" width="1200" height="1200" loading="lazy"></div>
+            <div class="bouquet-body">
+              <h3>«Нежность»</h3>
+              <p>Розовые розы в нежной гамме — для самых тёплых признаний.</p>
+              <div class="bouquet-footer"><span class="price">4 900 ₽</span><a href="#contacts" class="btn btn-primary btn-small">Заказать</a></div>
+            </div>
+          </article>
+          <article class="bouquet-card reveal">
+            <div class="bouquet-img bg-2"><img src="images/provans.jpg" alt="Букет сиреневой эустомы, лаванды и белых цветов" width="1200" height="1200" loading="lazy"></div>
+            <div class="bouquet-body">
+              <h3>«Прованс»</h3>
+              <p>Сиреневая эустома, лаванда и белые цветы — нежность французского сада.</p>
+              <div class="bouquet-footer"><span class="price">3 600 ₽</span><a href="#contacts" class="btn btn-primary btn-small">Заказать</a></div>
+            </div>
+          </article>
+          <article class="bouquet-card reveal">
+            <div class="bouquet-img bg-3"><img src="images/sunny-day.jpg" alt="Букет подсолнухов, белой эустомы и зелени" width="1200" height="1200" loading="lazy"></div>
+            <div class="bouquet-body">
+              <h3>«Солнечный день»</h3>
+              <p>Подсолнухи, эустома и зелень — заряд хорошего настроения.</p>
+              <div class="bouquet-footer"><span class="price">2 900 ₽</span><a href="#contacts" class="btn btn-primary btn-small">Заказать</a></div>
+            </div>
+          </article>
+          <article class="bouquet-card reveal">
+            <div class="bouquet-img bg-4"><img src="images/morning-garden.jpg" alt="Букет белых хризантем, гипсофилы и зелени" width="1200" height="1200" loading="lazy"></div>
+            <div class="bouquet-body">
+              <h3>«Утро в саду»</h3>
+              <p>Белые хризантемы, гипсофила и много свежей зелени.</p>
+              <div class="bouquet-footer"><span class="price">3 200 ₽</span><a href="#contacts" class="btn btn-primary btn-small">Заказать</a></div>
+            </div>
+          </article>
+          <article class="bouquet-card reveal">
+            <div class="bouquet-img bg-5"><img src="images/spring-mood.jpg" alt="Букет розовых, кремовых и сиреневых тюльпанов" width="1200" height="1200" loading="lazy"></div>
+            <div class="bouquet-body">
+              <h3>«Весеннее настроение»</h3>
+              <p>25 тюльпанов в пастельных оттенках с атласной лентой.</p>
+              <div class="bouquet-footer"><span class="price">4 200 ₽</span><a href="#contacts" class="btn btn-primary btn-small">Заказать</a></div>
+            </div>
+          </article>
+          <article class="bouquet-card reveal">
+            <div class="bouquet-img bg-6"><img src="images/for-her.jpg" alt="Пышный букет роз, пионов и сиреневой эустомы" width="1200" height="1200" loading="lazy"></div>
+            <div class="bouquet-body">
+              <h3>«Для неё»</h3>
+              <p>Большой сборный букет из сезонных цветов на выбор флориста.</p>
+              <div class="bouquet-footer"><span class="price">6 500 ₽</span><a href="#contacts" class="btn btn-primary btn-small">Заказать</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Услуги ===== -->
+    <section id="services">
+      <div class="container">
+        <div class="center reveal">
+          <span class="section-label">Услуги</span>
+          <h2 class="section-title">Не только букеты</h2>
+          <p class="section-sub">Создаём цветочное настроение для важных событий — от камерного ужина до большой свадьбы.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service reveal"><div class="service-icon">💍</div><h3>Оформление свадеб</h3><p>Букет невесты, арка, бутоньерки и декор банкетного зала.</p></div>
+          <div class="service reveal"><div class="service-icon">🎉</div><h3>Цветы для мероприятий</h3><p>Корпоративы, дни рождения, открытия магазинов и фотосессии.</p></div>
+          <div class="service reveal"><div class="service-icon">📅</div><h3>Подписка на цветы</h3><p>Свежий букет домой или в офис каждую неделю со скидкой 15%.</p></div>
+          <div class="service reveal"><div class="service-icon">✂️</div><h3>Мастер-классы</h3><p>Научим собирать букет самостоятельно — уйдёте домой со своим.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Доставка ===== -->
+    <section id="delivery" class="delivery">
+      <div class="container">
+        <div class="center reveal">
+          <span class="section-label">Доставка и оплата</span>
+          <h2 class="section-title">Три шага до улыбки</h2>
+          <p class="section-sub">Доставка по Москве в пределах МКАД — 390 ₽, при заказе от 5 000 ₽ — бесплатно.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><div class="step-num">1</div><h3>Выберите букет</h3><p>На сайте или напишите нам — поможем подобрать под повод и бюджет.</p></div>
+          <div class="step reveal"><div class="step-num">2</div><h3>Подтвердите заказ</h3><p>Менеджер перезвонит, уточнит адрес и время доставки.</p></div>
+          <div class="step reveal"><div class="step-num">3</div><h3>Получите цветы</h3><p>Курьер привезёт букет в течение 2 часов или к точному времени.</p></div>
+        </div>
+        <div class="payment reveal">
+          <span>💳 Картой онлайн</span>
+          <span>📱 СБП</span>
+          <span>💵 Наличными курьеру</span>
+          <span>🧾 Для юрлиц по счёту</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Отзывы ===== -->
+    <section id="reviews">
+      <div class="container">
+        <div class="center reveal">
+          <span class="section-label">Отзывы</span>
+          <h2 class="section-title">Что говорят клиенты</h2>
+        </div>
+        <div class="reviews-grid">
+          <div class="review reveal">
+            <div class="stars">★★★★★</div>
+            <p>«Заказывала букет маме на юбилей. Прислали фото перед отправкой, привезли точно ко времени — мама была в восторге!»</p>
+            <div class="review-author"><div class="avatar">А</div><div><b>Анна</b><small>букет «Нежность»</small></div></div>
+          </div>
+          <div class="review reveal">
+            <div class="stars">★★★★★</div>
+            <p>«Ребята оформили нашу свадьбу: арка, букет невесты, столы. Всё было в одной гамме и очень стильно. Спасибо!»</p>
+            <div class="review-author"><div class="avatar">М</div><div><b>Мария и Дмитрий</b><small>оформление свадьбы</small></div></div>
+          </div>
+          <div class="review reveal">
+            <div class="stars">★★★★☆</div>
+            <p>«Оформил подписку в офис — каждую пятницу свежие цветы на ресепшене. Коллеги довольны, удобно и недорого.»</p>
+            <div class="review-author"><div class="avatar">С</div><div><b>Сергей</b><small>подписка на цветы</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Контакты ===== -->
+    <section id="contacts" class="contacts">
+      <div class="container contacts-grid">
+        <div class="reveal">
+          <span class="section-label">Контакты</span>
+          <h2 class="section-title">Приходите в гости</h2>
+          <ul class="contact-list">
+            <li><span class="ci">📍</span><div><b>Адрес</b><span>Москва, ул. Покровка, 24, вход со двора</span></div></li>
+            <li><span class="ci">📞</span><div><b>Телефон</b><span><a href="tel:+74951234567">+7 (495) 123-45-67</a></span></div></li>
+            <li><span class="ci">🕘</span><div><b>Часы работы</b><span>Ежедневно с 9:00 до 21:00</span></div></li>
+            <li><span class="ci">✉️</span><div><b>Почта</b><span><a href="mailto:hello@lavanda-flowers.ru">hello@lavanda-flowers.ru</a></span></div></li>
+          </ul>
+          <div class="messengers">
+            <a href="https://t.me/lavanda_flowers" target="_blank" rel="noopener noreferrer">Telegram</a>
+            <a href="https://wa.me/74951234567" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="https://vk.com/lavanda_flowers" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+          </div>
+        </div>
+
+        <div class="form-card reveal">
+          <h3>Заказать звонок</h3>
+          <p>Оставьте номер — флорист перезвонит и поможет с выбором.</p>
+          <form id="callbackForm">
+            <div class="form-group"><label for="name">Ваше имя</label><input type="text" id="name" autocomplete="given-name" maxlength="80" placeholder="Анна" required></div>
+            <div class="form-group"><label for="phone">Телефон</label><input type="tel" id="phone" autocomplete="tel" inputmode="tel" maxlength="25" placeholder="+7 (___) ___-__-__" required></div>
+            <div class="form-group"><label for="comment">Комментарий</label><textarea id="comment" rows="3" placeholder="Повод, бюджет, пожелания по цветам"></textarea></div>
+            <button type="submit" class="btn btn-primary">Жду звонка</button>
+            <p class="demo-note">Учебный сайт: данные формы никуда не отправляются. Контакты, цены и отзывы приведены для примера. Изображения букетов созданы с помощью ИИ.</p>
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite">Демонстрационная заявка проверена. Данные не отправлены.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container footer-inner">
+      <a href="#top" class="logo"><span class="logo-icon">🪻</span>Лаванда</a>
+      <div class="socials">
+        <a href="https://t.me/lavanda_flowers" target="_blank" rel="noopener noreferrer" aria-label="Telegram">TG</a>
+        <a href="https://vk.com/lavanda_flowers" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте">VK</a>
+        <a href="https://wa.me/74951234567" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
+      </div>
+      <div class="copyright">© 2026 Студия цветов «Лаванда». Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Мобильное меню
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Анимация появления блоков при прокрутке
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Передаём выбранный букет в комментарий заявки.
+    document.querySelectorAll('.bouquet-card .btn').forEach(link => {
+      link.addEventListener('click', () => {
+        const title = link.closest('.bouquet-card').querySelector('h3').textContent;
+        document.getElementById('comment').value = 'Хочу заказать букет ' + title + '.';
+        document.getElementById('formSuccess').classList.remove('show');
+        document.getElementById('name').focus({ preventScroll: true });
+      });
+    });
+    const phone = document.getElementById('phone');
+    phone.addEventListener('input', () => phone.setCustomValidity(''));
+    // Форма обратного звонка (без отправки на сервер)
+    document.getElementById('callbackForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const digits = phone.value.replace(/\D/g, '');
+      phone.setCustomValidity(digits.length >= 10 && digits.length <= 15 && /^[+\d\s().-]+$/.test(phone.value) ? '' : 'Введите телефон: от 10 до 15 цифр.');
+      if (!e.target.reportValidity()) return;
+      document.getElementById('formSuccess').classList.add('show');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
