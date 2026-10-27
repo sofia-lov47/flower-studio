@@ -283,6 +283,36 @@
     .socials a:hover { background: var(--lavender); border-color: var(--lavender); color: var(--white); }
     .copyright { width: 100%; text-align: center; font-size: 0.85rem; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 
+    /* ---------- Кнопка «Наверх» ---------- */
+    .to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 200;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 50px;
+      background: var(--lavender-dark);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(111, 90, 168, 0.35);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(16px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background 0.25s;
+    }
+    .to-top:hover { background: var(--lavender); }
+    .to-top.visible { opacity: 1; visibility: visible; transform: none; }
+    .to-top.visible:active { transform: translateY(2px); }
+
     /* ---------- Анимация появления ---------- */
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -319,6 +349,7 @@
       .hero-badge { left: 12px; bottom: 16px; }
       .form-card { padding: 28px 20px; }
       .hero-buttons .btn { width: 100%; text-align: center; }
+      .to-top { right: 16px; bottom: 16px; padding: 16px 20px; }
     }
       .demo-note { font-size: .82rem; color: var(--text-soft); margin-top: 16px; }
     a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--lavender-dark); outline-offset: 4px; }
@@ -590,6 +621,9 @@
     </div>
   </footer>
 
+  <!-- ===== Кнопка «Наверх» ===== -->
+  <button class="to-top" id="toTop" type="button" aria-label="Вернуться к началу страницы">↑ Наверх</button>
+
   <script>
     // Мобильное меню
     const burger = document.getElementById('burger');
@@ -635,6 +669,16 @@
       if (!e.target.reportValidity()) return;
       document.getElementById('formSuccess').classList.add('show');
       e.target.reset();
+    });
+
+    // Кнопка «Наверх»
+    const toTop = document.getElementById('toTop');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const updateToTop = () => toTop.classList.toggle('visible', window.scrollY > 400);
+    window.addEventListener('scroll', updateToTop, { passive: true });
+    updateToTop();
+    toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   </script>
 </body>
