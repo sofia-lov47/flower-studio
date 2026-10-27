@@ -238,6 +238,58 @@
     }
     .review-author small { display: block; color: var(--text-soft); }
 
+    /* ---------- Частые вопросы ---------- */
+    .faq-list { max-width: 760px; margin: 0 auto; display: grid; gap: 16px; }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid rgba(155, 135, 201, 0.18);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 16px rgba(111, 90, 168, 0.06);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .faq-item[open] { box-shadow: var(--shadow); }
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 26px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      transition: color 0.25s;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { color: var(--lavender-dark); }
+    .faq-item summary::after {
+      content: "+";
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--lavender-light);
+      color: var(--lavender-dark);
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+      background: var(--lavender-dark);
+      color: var(--white);
+    }
+    .faq-answer { padding: 0 26px 24px; color: var(--text-soft); font-size: 0.95rem; }
+    .faq-answer p { margin-bottom: 10px; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+
     /* ---------- Контакты ---------- */
     .contacts { background: var(--white); }
     .contacts-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 50px; }
@@ -569,6 +621,37 @@
             <p>«Оформил подписку в офис — каждую пятницу свежие цветы на ресепшене. Коллеги довольны, удобно и недорого.»</p>
             <div class="review-author"><div class="avatar">С</div><div><b>Сергей</b><small>подписка на цветы</small></div></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Частые вопросы ===== -->
+    <section id="faq">
+      <div class="container">
+        <div class="center reveal">
+          <span class="section-label">FAQ</span>
+          <h2 class="section-title">Частые вопросы</h2>
+          <p class="section-sub">Собрали ответы на вопросы, которые нам задают чаще всего.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>Сколько времени занимает доставка?</summary>
+            <div class="faq-answer">
+              <p>Доставляем букеты по Москве в пределах МКАД за 2 часа с момента подтверждения заказа. К нужному времени привезём цветы, если оформить заказ до 12:00. Доставка стоит 390 ₽, при заказе от 5 000 ₽ — бесплатно.</p>
+            </div>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Можно ли собрать букет по моим пожеланиям?</summary>
+            <div class="faq-answer">
+              <p>Конечно. Расскажите флористу о поводе, любимых цветах и оттенках и бюджете — соберём авторскую композицию под вас. Если не знаете, с чего начать, предложим несколько вариантов на выбор.</p>
+            </div>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Пришлёте фото букета перед отправкой?</summary>
+            <div class="faq-answer">
+              <p>Да, всегда. Перед отправкой курьеру фотографируем готовый букет и присылаем снимок в мессенджер — вы увидите его до того, как цветы уедут к получателю.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
